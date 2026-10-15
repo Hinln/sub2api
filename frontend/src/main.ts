@@ -6,6 +6,7 @@ import i18n, { initI18n } from './i18n'
 import { useAppStore } from '@/stores/app'
 import { updateFavicon } from '@/utils/branding'
 import { isIOSDevice } from '@/utils/device'
+import { initThemeLayer } from '@/features/themes/runtime'
 import './style.css'
 
 function initIOSViewportZoomFix() {
@@ -43,6 +44,9 @@ async function bootstrap() {
   // This must happen after pinia is installed but before router and i18n
   const appStore = useAppStore()
   appStore.initFromInjectedConfig()
+
+  // Theme packages are optional; the loader has a bounded, fail-open startup.
+  await initThemeLayer()
 
   // Set document title immediately after config is loaded
   if (appStore.siteName && appStore.siteName !== 'Sub2API') {

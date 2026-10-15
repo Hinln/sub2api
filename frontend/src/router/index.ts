@@ -13,6 +13,7 @@ import { useRoutePrefetch } from '@/composables/useRoutePrefetch'
 import { getSetupStatus } from '@/api/setup'
 import { resolveCompletedSetupRedirectPath } from './setupRedirect'
 import { resolveRouteDocumentTitle } from './title'
+import { themeRoutes } from '@/features/themes/routes'
 
 /**
  * Route definitions with lazy loading
@@ -398,6 +399,7 @@ const routes: RouteRecordRaw[] = [
   },
 
   // ==================== Admin Routes ====================
+  ...themeRoutes,
   {
     path: '/admin',
     redirect: '/admin/dashboard'
